@@ -7,9 +7,9 @@ const Report = (props) => {
   const [originalData, setOriginalData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [toggle, setToggle] = useState(false);
+  const [attendanceOrder, setAttendanceOrder] = useState(0);
   const [attendanceFilter, setAttendanceFilter] = useState("All");
   const [subjectFilter, setSubjectFilter] = useState("DSA");
-  const [attendanceOrder, setAttendanceOrder] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -20,7 +20,7 @@ const Report = (props) => {
         ...ele,
         attendance: attendanceValue,
         currStatus: ["Present", "Absent"][Math.random() > 0.4 ? 0 : 1],
-        status: attendanceValue > 75 ? "Good" : "Low", // Changed labels for better UX
+        status: attendanceValue >= 75 ? "Good" : "Low", 
       };
     });
 
@@ -61,7 +61,7 @@ const Report = (props) => {
     async function apiRequest() {
       const skip = (props.year - 1) * 50;
       const apiCall = await fetch(
-        `https://dummyjson.com/users?limit=50&skip=${skip}`,
+        `https://dummyjson.com/users?limit=40&skip=${skip}`,
       );
       const data = await apiCall.json();
 
@@ -77,14 +77,14 @@ const Report = (props) => {
           phone: ele.phone,
           attendance: attendanceValue,
           currStatus: ["Present", "Absent"][Math.random() > 0.4 ? 0 : 1],
-          status: attendanceValue > 80 ? "Good" : "Low", // Changed labels for better UX
+          status: attendanceValue >= 75 ? "Good" : "Low", 
         };
       });
 
       setOriginalData(refinedData);
+      setSubjectData(refinedData);
+      setStudent(refinedData);
       setTimeout(() => {
-        setSubjectData(refinedData);
-        setStudent(refinedData);
         setLoading(false);
       }, 1000);
     }
@@ -102,7 +102,6 @@ const Report = (props) => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0c] text-slate-200 p-4 md:p-10 relative overflow-hidden">
-      {/* Background Glows */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-600/10 blur-[120px] rounded-full"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -190,7 +189,7 @@ const Report = (props) => {
           </div>
         </div>
 
-        {/* The Glass Table */}
+        {/* The Table */}
         <div className="bg-white/[0.02] backdrop-blur-[20px] border border-white/10 rounded-[32px] overflow-hidden shadow-2xl">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">

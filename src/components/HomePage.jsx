@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const Homepage = (props) => {
   return (
     <div className="min-h-screen bg-[#0a0a0c] flex items-center justify-center p-6 relative overflow-hidden">
-      {/* 1. LAYERED BACKGROUND GRADIENTS (The "Glow" behind the glass) */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-600/20 blur-[120px] rounded-full"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/20 blur-[120px] rounded-full"></div>
 
@@ -17,7 +16,7 @@ const Homepage = (props) => {
           </h2>
         </div>
 
-        {/* 3. THE GLASS CARD */}
+        {/* 3. THE CARD */}
 
         <div className="w-full bg-white/[0.03] backdrop-blur-[25px] border border-white/10 rounded-[40px] p-12 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] flex flex-col items-center text-center">
           <div className="max-w-2xl">
@@ -34,7 +33,6 @@ const Homepage = (props) => {
             </p>
           </div>
 
-          {/* SYMMETRICAL SELECTION GRID */}
           <div className="w-full max-w-md space-y-8">
             <div className="space-y-4">
               <span className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em]">
@@ -90,7 +88,7 @@ const Homepage = (props) => {
           </div>
         </div>
 
-        {/* 4. SYMMETRICAL FOOTER LABELS */}
+        {/* 4. FOOTER LABELS */}
         <div className="mt-12 flex gap-16">
           <div className="text-center">
             <p className="text-white font-bold text-xl">50+</p>
