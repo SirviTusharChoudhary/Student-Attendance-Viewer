@@ -56,7 +56,7 @@ const Homepage = (props) => {
 
             {/* ACTION BUTTON */}
             <Link
-              to="/report"
+              to="/Report"
               className="group w-full py-5 bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center gap-4 transition-all"
             >
               <span className="font-bold text-xs uppercase tracking-[0.2em]">

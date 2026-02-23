@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage yearDetail={{ year, setYear }} />}/>
-          <Route path="/report" element={<Report year={year} />} />
+          <Route path="/Report" element={<Report year={year} />} />
         </Routes>
       </BrowserRouter>
     </>
