@@ -1,78 +1,69 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 const Homepage = (props) => {
   return (
-    <div className="min-h-screen bg-[#0a0a0c] flex items-center justify-center p-6 relative overflow-hidden">
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-600/20 blur-[120px] rounded-full"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/20 blur-[120px] rounded-full"></div>
+    <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center p-6 relative overflow-hidden font-sans text-slate-900">
+      <div className="absolute top-0 left-0 w-full h-1/2 bg-[#0f172a] clip-path-slant"></div>
 
-      {/* 2. THE CENTRAL SYMMETRICAL HUB */}
-      <main className="relative z-10 w-full max-w-4xl flex flex-col items-center">
-        {/* LOGO SECTION */}
-        <div className="mb-8 flex flex-col items-center gap-4">
-          <h2 className="text-white/40 font-bold tracking-[0.3em] text-xs uppercase">
-            Attendance Analytics v2
-          </h2>
+      <div className="absolute top-[10%] right-[5%] w-64 h-64 border border-white/5 rounded-full"></div>
+
+      <main className="relative z-10 w-full max-w-5xl flex flex-col items-center">
+        {/*  STATUS BAR */}
+        <div className="mb-10 w-full flex justify-between items-center text-white/60 text-[10px] font-bold uppercase tracking-[0.2em] px-4">
+          <span>Academic Management System</span>
+          <span>Session: 2025/26</span>
         </div>
 
-        {/* 3. THE CARD */}
+        {/* 2. THE LEDGER CARD */}
+        <div className="w-full bg-white rounded-none border border-slate-200 p-10 md:p-20 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] flex flex-col items-center text-center relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-[#10b981]"></div>
 
-        <div className="w-full bg-white/[0.03] backdrop-blur-[25px] border border-white/10 rounded-[40px] p-12 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] flex flex-col items-center text-center">
-          <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">
-              Monitor{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400">
-                Class Performance
-              </span>
+          <div className="max-w-2xl mb-16">
+            <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-none uppercase">
+              Student <span className="text-[#10b981]">Attendance</span> <br />
+              <span className="font-light text-slate-400">& Performance</span>
             </h1>
-            <p className="text-slate-400 text-lg leading-relaxed mb-12">
-              Generate precise attendance reports for Year 1, 2, and 3.{" "}
-              <br className="hidden md:block" />
-              Automated tracking for DSA, Web Development, and Mathematics.
+            <div className="h-1 w-20 bg-slate-900 mx-auto mb-6"></div>
+            <p className="text-slate-500 font-medium text-sm max-w-sm mx-auto leading-relaxed">
+              Analyze enrollment data, monitor attendance trends, and manage
+              academic cohorts with precision.
             </p>
           </div>
 
-          <div className="w-full max-w-md space-y-8">
+          <div className="w-full max-w-md space-y-12">
+            {/* COHORT SELECTION */}
             <div className="space-y-4">
-              <span className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em]">
-                Select Academic Year
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                Cohort Selection
               </span>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="flex bg-slate-100 p-1.5 rounded-lg">
                 {[1, 2, 3].map((y) => (
                   <button
                     key={y}
                     onClick={() => props.yearDetail.setYear(y)}
-                    className={`relative overflow-hidden group py-4 rounded-2xl border transition-all duration-500 ${
+                    className={`flex-1 py-3 rounded-md transition-all duration-200 font-bold text-xs ${
                       props.yearDetail.year === y
-                        ? "bg-white/10 border-indigo-500/50 text-white shadow-[0_0_25px_rgba(79,70,229,0.2)]"
-                        : "bg-white/[0.02] border-white/5 text-white/40 hover:border-white/20"
+                        ? "bg-white text-slate-900 shadow-sm"
+                        : "bg-transparent text-slate-500 hover:text-slate-700"
                     }`}
                   >
-                    <span className="relative z-10 font-bold text-sm">
-                      Year {y}
-                    </span>
-                    {props.yearDetail.year === y && (
-                      <div className="absolute inset-0 bg-indigo-500/10 animate-pulse"></div>
-                    )}
+                    YEAR {y}
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* DIVIDER */}
-            <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-
-            {/* GENERATE BUTTON */}
+            {/* ACTION BUTTON */}
             <Link
               to="/report"
-              className="w-full group relative py-6 bg-white rounded-2xl flex items-center justify-center gap-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-[0_20px_40px_rgba(255,255,255,0.1)]"
+              className="group w-full py-5 bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center gap-4 transition-all"
             >
-              <span className="text-slate-900 font-black text-xl tracking-tight">
-                GENERATE WEEKLY REPORT
+              <span className="font-bold text-xs uppercase tracking-[0.2em]">
+                Access Database
               </span>
               <svg
-                className="w-6 h-6 text-slate-900 transition-transform group-hover:translate-x-1"
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -80,30 +71,43 @@ const Homepage = (props) => {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth="3"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  strokeWidth="2"
+                  d="M9 5l7 7-7 7"
                 />
               </svg>
             </Link>
           </div>
         </div>
 
-        {/* 4. FOOTER LABELS */}
-        <div className="mt-12 flex gap-16">
-          <div className="text-center">
-            <p className="text-white font-bold text-xl">50+</p>
-            <p className="text-white/20 text-[10px] font-black uppercase tracking-widest">
-              Records / Yr
+        <div className="mt-12 w-full max-w-2xl grid grid-cols-2 gap-px bg-slate-200 border border-slate-200 overflow-hidden">
+          <div className="bg-white p-8 text-center">
+            <p className="text-slate-400 text-[9px] font-bold uppercase tracking-widest mb-2">
+              Total Students
+            </p>
+            <p className="text-slate-900 font-black text-3xl italic leading-none">
+              50
             </p>
           </div>
-          <div className="text-center">
-            <p className="text-white font-bold text-xl">3</p>
-            <p className="text-white/20 text-[10px] font-black uppercase tracking-widest">
-              Subjects
+          <div className="bg-white p-8 text-center">
+            <p className="text-slate-400 text-[9px] font-bold uppercase tracking-widest mb-2">
+              Active Courses
+            </p>
+            <p className="text-slate-900 font-black text-3xl italic leading-none">
+              03
             </p>
           </div>
         </div>
       </main>
+
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+        .clip-path-slant {
+          clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+        }
+      `,
+        }}
+      />
     </div>
   );
 };
