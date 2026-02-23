@@ -44,7 +44,7 @@ const Report = (props) => {
     async function apiRequest() {
       const skip = (props.year - 1) * 50;
       const apiCall = await fetch(
-        `https://dummyjson.com/users?limit=40&skip=${skip}`,
+        `https://dummyjson.com/users?limit=50&skip=${skip}`,
       );
       const data = await apiCall.json();
       const refinedData = data.users.map((ele) => {
@@ -52,7 +52,7 @@ const Report = (props) => {
         return {
           id: ele.id,
           name: `${ele.firstName} ${ele.lastName}`,
-          age: 18 + Math.floor(Math.random() * 6),
+          age: 17 + Math.floor(Math.random() * 6),
           email: ele.email,
           phone: ele.phone,
           gender: ele.gender,
